@@ -5,7 +5,7 @@ import Routes from './components/Routes';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
