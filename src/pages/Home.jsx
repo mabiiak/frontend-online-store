@@ -29,53 +29,42 @@ class Home extends Component {
     const { arrOfCategories } = this.state;
 
     return (
-<<<<<<< HEAD
       <main>
         <div>
           <aside>
-            {
-              arrOfCategories.map((categorie) => (
-                <button
-                  className="categories"
-                  key={ categorie.name }
-                  type="button"
-                  data-testid="category"
-                >
-                  { categorie.name }
-                </button>
-              ))
-            }
+            {arrOfCategories.map((categorie) => (
+              <button
+                className="categories"
+                key={categorie.name}
+                type="button"
+                data-testid="category"
+              >
+                {categorie.name}
+              </button>
+            ))}
           </aside>
         </div>
         <section>
           <label htmlFor="input-home">
             <input type="text" id="input-home" />
           </label>
-          <p
-            data-testid="home-initial-message"
-          >
+          <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
         </section>
+
+        <div>
+          <label htmlFor="input-home">
+            <input type="text" id="input-home" />
+          </label>
+          <Link to="/cart" data-testid="shopping-cart-button">
+            <GrCart />
+          </Link>
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+        </div>
       </main>
-=======
-      <div>
-        <label htmlFor="input-home">
-          <input type="text" id="input-home" />
-        </label>
-        <Link
-          to="/cart"
-          data-testid="shopping-cart-button"
-        >
-          <GrCart />
-        </Link>
-        <p
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-      </div>
->>>>>>> main-group-34
     );
   }
 }
