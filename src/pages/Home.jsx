@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Home.css';
 import { Link } from 'react-router-dom';
-import { GrCart } from 'react-icons/gr';
+/* import { GrCart } from 'react-icons/gr'; */
 import * as api from '../services/api';
 
 class Home extends Component {
@@ -44,21 +44,12 @@ class Home extends Component {
             ))}
           </aside>
         </div>
-        <section>
-          <label htmlFor="input-home">
-            <input type="text" id="input-home" />
-          </label>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-        </section>
-
         <div>
           <label htmlFor="input-home">
             <input type="text" id="input-home" />
           </label>
           <Link to="/cart" data-testid="shopping-cart-button">
-            <GrCart />
+            {/* <GrCart /> */}
           </Link>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
