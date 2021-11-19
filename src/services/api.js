@@ -3,6 +3,7 @@ export async function getCategories() {
   const requestCategories = await fetch(url);
   const requestResponse = await requestCategories.json();
   return requestResponse;
+  // console.log(requestResponse);
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
