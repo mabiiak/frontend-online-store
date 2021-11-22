@@ -12,11 +12,13 @@ export default class Home extends Component {
       inputProduct: '',
       arrayProducts: [],
       arrOfCategories: [],
+      listSelectCategorie: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.getProduct = this.getProduct.bind(this);
     this.listCategories = this.listCategories.bind(this);
+    this.getCategory = this.getProduct.bind(this);
   }
 
   componentDidMount() {
@@ -35,13 +37,26 @@ export default class Home extends Component {
       .then((result) => (this.setState({ arrayProducts: result.results })));
   }
 
+  getCategory(categoryId) {
+    console.log('entrei aqui');
+    const { inputProduct } = this.state;
+    api.getProductsFromCategoryAndQuery(categoryId, inputProduct)
+      .then((data) => this.setState({ listSelectCategorie: data.results }));
+  }
+
   async listCategories() {
     const callCategories = await api.getCategories();
     this.setState({ arrOfCategories: callCategories });
   }
 
   render() {
-    const { inputProduct, arrayProducts, arrOfCategories } = this.state;
+    const {
+      inputProduct,
+      arrayProducts,
+      arrOfCategories,
+      listSelectCategorie,
+    } = this.state;
+
     return (
       <div>
         <label htmlFor="input-home">
@@ -72,19 +87,26 @@ export default class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <div>
-          <aside>
-            {arrOfCategories.map((categorie) => (
+          {arrOfCategories.length > 0
+            && arrOfCategories.map((categorie) => (
               <button
                 className="categories"
                 key={ categorie.name }
                 type="button"
                 data-testid="category"
+                onClick={ () => this.getCategory(categorie.id) }
               >
                 {categorie.name}
               </button>
             ))}
-          </aside>
         </div>
+        { listSelectCategorie.length > 0 && listSelectCategorie.map((product) => (
+          <div data-testid="product" key={ product.id }>
+            <h3>{ product.title }</h3>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <p>{ product.price }</p>
+          </div>))}
+
         { arrayProducts.length > 0
           ? <CardProducts cardProduct={ arrayProducts } />
           : 'Nenhum produto foi encontrado' }
