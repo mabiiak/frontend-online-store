@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { GrCart } from 'react-icons/gr';
 import * as api from '../services/api';
 import CardProducts from '../components/CardProducts';
+// função estava com bind errado
 
 export default class Home extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class Home extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.getProduct = this.getProduct.bind(this);
     this.listCategories = this.listCategories.bind(this);
-    this.getCategory = this.getProduct.bind(this);
+    this.getCategory = this.getCategory.bind(this);
   }
 
   componentDidMount() {
