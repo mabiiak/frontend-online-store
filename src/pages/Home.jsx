@@ -18,7 +18,7 @@ export default class Home extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.getProduct = this.getProduct.bind(this);
     this.listCategories = this.listCategories.bind(this);
-    this.getCategory = this.getProduct.bind(this);
+    this.getCategory = this.getCategory.bind(this);
   }
 
   componentDidMount() {
