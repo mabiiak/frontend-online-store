@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { GrCart } from 'react-icons/gr';
 import * as api from '../services/api';
 import CardProducts from '../components/CardProducts';
+// função estava com bind errado
 
 export default class Home extends Component {
   constructor(props) {
