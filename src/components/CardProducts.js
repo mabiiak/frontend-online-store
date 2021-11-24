@@ -40,7 +40,8 @@ export default class CardProducts extends React.Component {
             cardProduct={ product }
           />
         </div>
-      )));
+      ))
+    );
   }
 }
 
