@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 export default class CardProducts extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export default class CardProducts extends React.Component {
           <h3>{ product.title }</h3>
           <img src={ product.thumbnail } alt={ product.title } />
           <p>{ product.price }</p>
+          <Button />
         </div>
       )));
   }

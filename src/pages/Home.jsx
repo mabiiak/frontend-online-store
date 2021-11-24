@@ -101,12 +101,8 @@ export default class Home extends Component {
               </button>
             ))}
         </div>
-        { listSelectCategorie.length > 0 && listSelectCategorie.map((product) => (
-          <div data-testid="product" key={ product.id }>
-            <h3>{ product.title }</h3>
-            <img src={ product.thumbnail } alt={ product.title } />
-            <p>{ product.price }</p>
-          </div>))}
+        { listSelectCategorie.length > 0
+        && <CardProducts cardProduct={ listSelectCategorie } /> }
 
         { arrayProducts.length > 0
           ? <CardProducts cardProduct={ arrayProducts } />
