@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../css/Home.css';
 import { Link } from 'react-router-dom';
 import { GrCart } from 'react-icons/gr';
 import * as api from '../services/api';
 import CardProducts from '../components/CardProducts';
-// função estava com bind errado
 
 export default class Home extends Component {
   constructor(props) {
@@ -52,11 +52,16 @@ export default class Home extends Component {
 
   render() {
     const {
-      inputProduct,
-      arrayProducts,
-      arrOfCategories,
-      listSelectCategorie,
-    } = this.state;
+      state: {
+        inputProduct,
+        arrayProducts,
+        arrOfCategories,
+        listSelectCategorie,
+      },
+      props: {
+        addCart,
+      },
+    } = this;
 
     return (
       <div>
@@ -102,12 +107,19 @@ export default class Home extends Component {
             ))}
         </div>
         { listSelectCategorie.length > 0
-        && <CardProducts cardProduct={ listSelectCategorie } /> }
+        && <CardProducts
+          cardProduct={ listSelectCategorie }
+          addCart={ addCart }
+        /> }
 
         { arrayProducts.length > 0
-          ? <CardProducts cardProduct={ arrayProducts } />
+          ? <CardProducts cardProduct={ arrayProducts } addCart={ addCart } />
           : 'Nenhum produto foi encontrado' }
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  addCart: PropTypes.func.isRequired,
+};
