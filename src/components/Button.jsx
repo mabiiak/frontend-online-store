@@ -7,8 +7,12 @@ class Button extends Component {
     return (
       <div>
         <button
-          data-testid={ name === 'product' ? "product-detail-add-to-cart" : "product-add-to-cart"}
-          type="button" 
+          data-testid={
+            name === 'product'
+              ? 'product-detail-add-to-cart'
+              : 'product-add-to-cart'
+          }
+          type="button"
           onClick={ () => addCart(cardProduct) }
         >
           Adicionar ao carrinho
@@ -21,7 +25,7 @@ class Button extends Component {
 Button.propTypes = {
   cardProduct: PropTypes.string.isRequired,
   addCart: PropTypes.func.isRequired,
-  dataTestid: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default Button;

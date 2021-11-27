@@ -29,9 +29,23 @@ class Routes extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path="/" render={ (props) => <Home { ...props } addCart={ this.addCart } /> } />
+          <Route
+            exact
+            path="/"
+            render={ (props) => (<Home
+              { ...props }
+              addCart={ this.addCart }
+            />) }
+          />
           <Route path="/cart" component={ Cart } />
-          <Route exact path="/product/:id" render={ (props) => <Product { ...props } addCart={ this.addCart } /> } />
+          <Route
+            exact
+            path="/product/:id"
+            render={ (props) => (<Product
+              { ...props }
+              addCart={ this.addCart }
+            />) }
+          />
         </Switch>
       </main>
     );

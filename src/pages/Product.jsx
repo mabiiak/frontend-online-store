@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { GrCart } from 'react-icons/gr';
 import { getIdProducts } from '../services/api';
 import Button from '../components/Button';
-import Cart from './Cart';
 
 class Product extends Component {
   constructor() {
@@ -42,17 +43,24 @@ class Product extends Component {
     const { addCart } = this.props;
 
     return (
-      <div>
-        <img src={ image } alt={ title } />
-        <h3 data-testid="product-detail-name">{ title }</h3>
-        <h4>{ price }</h4>
-        <p>{ description }</p>
-        <Button
-          cardProduct={ this.state }
-          addCart={ addCart }
-          name="product"
-        />
-        <Cart />
+      <div className="product-details-container">
+        <Link
+          to="/cart"
+          data-testid="shopping-cart-button"
+        >
+          <GrCart />
+        </Link>
+        <div>
+          <img src={ image } alt={ title } />
+          <h3 data-testid="product-detail-name">{ title }</h3>
+          <h4>{ price }</h4>
+          <p>{ description }</p>
+          <Button
+            cardProduct={ this.state }
+            addCart={ addCart }
+            name="product"
+          />
+        </div>
       </div>
     );
   }
