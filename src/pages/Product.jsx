@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GrCart } from 'react-icons/gr';
+import { TiArrowBackOutline } from 'react-icons/ti';
 import { getIdProducts } from '../services/api';
-import Button from '../components/Button';
+import Button from '../components/button/Button';
 
 class Product extends Component {
   constructor() {
@@ -26,9 +27,7 @@ class Product extends Component {
 
   getAPI() {
     const { match: { params: { id } } } = this.props;
-    console.log(id);
     getIdProducts(id).then((data) => {
-      console.log(data);
       this.setState({
         title: data.title,
         price: data.price,
@@ -44,6 +43,9 @@ class Product extends Component {
 
     return (
       <div className="product-details-container">
+        <Link to="/">
+          <TiArrowBackOutline />
+        </Link>
         <Link
           to="/cart"
           data-testid="shopping-cart-button"

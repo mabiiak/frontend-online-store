@@ -4,7 +4,7 @@ import '../css/Home.css';
 import { Link } from 'react-router-dom';
 import { GrCart } from 'react-icons/gr';
 import * as api from '../services/api';
-import CardProducts from '../components/CardProducts';
+import CardProducts from '../components/cardProducts/CardProducts';
 
 export default class Home extends Component {
   constructor(props) {
@@ -39,7 +39,6 @@ export default class Home extends Component {
   }
 
   getCategory(categoryId) {
-    console.log('entrei aqui');
     const { inputProduct } = this.state;
     api.getProductsFromCategoryAndQuery(categoryId, inputProduct)
       .then((data) => this.setState({ listSelectCategorie: data.results }));

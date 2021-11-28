@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { BiTrash } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 class Cart extends React.Component {
   constructor() {
     super();
-
     this.state = {
       getListProduct: [],
-      /*  cont: 0, */
     };
-
-    this.getFromStorage = this.getFromStorage.bind(this);
-    /* this.contItensCart = this.contItensCart.bind(this); */
+    this.addToCart = this.addToCart.bind(this);
+    this.decreaseToCart = this.decreaseToCart.bind(this);
   }
 
   componentDidMount() {
@@ -18,37 +18,60 @@ class Cart extends React.Component {
   }
 
   getFromStorage() {
-    const getSavedFromLocalStorage = JSON.parse(localStorage.getItem('listItemSelect'));
-    if (getSavedFromLocalStorage) {
-      this.setState({ getListProduct: getSavedFromLocalStorage });
-    }
+    const getSavedFromLocalStorage = JSON.parse(localStorage.getItem('listItemSelect'))
+    || [];
+
+    this.setState({ getListProduct: getSavedFromLocalStorage });
   }
 
-  /* contItensCart() {
-    const { getListProduct } = this.state;
-    const conts = getListProduct.reduce((acc, current) => {
-      if (current.id === acc.id) {
-        acc.push(current);
-      }
-      return acc;
-    }, []);
-    this.setState({ cont: conts.length });
-  } */
+  sumPrice() {
+    const { getListProduct: cart } = this.state;
+    const total = cart.reduce((acc, item) => parseFloat(acc) + parseFloat(item.price), 0);
+    return total;
+  }
 
-  /* contItensCart() {
+  addToCart(item) {
+    const { addCart } = this.props;
+    const cart = addCart(item);
+    this.setState({ getListProduct: cart });
+  }
 
-  } */
+  decreaseToCart(item) {
+    const { decrementCart } = this.props;
+    const cart = decrementCart(item);
+    this.setState({ getListProduct: cart });
+  }
 
   render() {
     const { getListProduct } = this.state;
+
     const mapLocalStorage = (getListProduct.map((product) => (
       <div key={ product.id }>
         <h3 data-testid="shopping-cart-product-name">{ product.title }</h3>
-        <img src={ product.thumbnail } alt={ product.title } />
+        <img width="200" src={ product.thumbnail } alt={ product.title } />
         <p>{ product.price }</p>
-        <span data-testid="shopping-cart-product-quantity">
-          1
-        </span>
+        <div>
+          <button
+            data-testid="product-decrease-quantity"
+            type="button"
+            onClick={ () => this.decreaseToCart(product) }
+          >
+            -
+
+          </button>
+
+          <span data-testid="shopping-cart-product-quantity">{product.quantity}</span>
+
+          <button
+            data-testid="product-increase-quantity"
+            type="button"
+            onClick={ () => this.addToCart(product) }
+          >
+            +
+
+          </button>
+        </div>
+        <BiTrash />
       </div>
     )));
 
@@ -58,9 +81,21 @@ class Cart extends React.Component {
           ? (<p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>)
           : (mapLocalStorage)}
 
+        <div>
+          <p>{`Total: R$ ${this.sumPrice()}`}</p>
+          <button type="button">Finalizar Compra</button>
+          <Link to="/">
+            Continuar comprando
+          </Link>
+        </div>
       </div>
     );
   }
 }
+
+Cart.propTypes = {
+  addCart: PropTypes.func.isRequired,
+  decrementCart: PropTypes.func.isRequired,
+};
 
 export default Cart;
