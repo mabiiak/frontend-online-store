@@ -5,7 +5,7 @@ import { GrCart } from 'react-icons/gr';
 import * as api from '../services/api';
 import CardProducts from '../components/cardProducts/CardProducts';
 // erro de lint no caminho do css
-import '../css/home.css';
+// import '../css/home.css';
 
 export default class Home extends Component {
   constructor(props) {
