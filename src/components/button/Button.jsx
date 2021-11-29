@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './button.css';
 
 class Button extends Component {
   render() {
@@ -7,6 +8,7 @@ class Button extends Component {
     return (
       <div>
         <button
+          className="add-cart-button"
           data-testid={
             name === 'product'
               ? 'product-detail-add-to-cart'
@@ -23,10 +25,10 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-  cardProduct: PropTypes.string.isRequired,
-  addCart: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-};
+  cardProduct: PropTypes.string,
+  addCart: PropTypes.func,
+  name: PropTypes.string,
+}.isRequired;
 
 export default Button;
 

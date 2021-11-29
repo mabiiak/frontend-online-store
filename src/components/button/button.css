@@ -1,0 +1,14 @@
+.add-cart-button {
+  align-items: center;
+  background-color: #84a59d;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  display: flex;
+  height: 25px;
+  padding: 15px;
+}
+
+.add-cart-button:hover {
+  background-color: #06d6a0;
+}
