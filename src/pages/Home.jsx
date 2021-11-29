@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../css/home.css';
 import { Link } from 'react-router-dom';
 import { GrCart } from 'react-icons/gr';
 import * as api from '../services/api';
 import CardProducts from '../components/cardProducts/CardProducts';
+import '../css/home.css';
 
 export default class Home extends Component {
   constructor(props) {
