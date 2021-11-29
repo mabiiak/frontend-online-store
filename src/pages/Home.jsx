@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../css/Home.css';
+import '../css/home.css';
 import { Link } from 'react-router-dom';
 import { GrCart } from 'react-icons/gr';
 import * as api from '../services/api';
@@ -63,36 +63,50 @@ export default class Home extends Component {
     } = this;
 
     return (
-      <div>
-        <label htmlFor="input-home">
-          <input
-            value={ inputProduct }
-            type="text"
-            id="input-home"
-            onChange={ this.handleChange }
-            data-testid="query-input"
-          />
-        </label>
-        <button
-          type="button"
-          onClick={ this.getProduct }
-          data-testid="query-button"
-        >
-          Pesquisar
-        </button>
-        <Link
-          to="/cart"
-          data-testid="shopping-cart-button"
-        >
-          <GrCart />
-        </Link>
-        <p
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <div>
-          {arrOfCategories.length > 0
+      <div className="main-conatiner">
+
+        <header className="main-header">
+          <div className="main-bar-search">
+            <label htmlFor="input-home">
+              <input
+                className="main-input"
+                value={ inputProduct }
+                type="text"
+                id="input-home"
+                onChange={ this.handleChange }
+                data-testid="query-input"
+              />
+            </label>
+
+            <button
+              className="main-button"
+              type="button"
+              onClick={ this.getProduct }
+              data-testid="query-button"
+            >
+              Pesquisar
+            </button>
+
+            <Link
+              to="/cart"
+              data-testid="shopping-cart-button"
+            >
+              <GrCart className="cart-button" />
+            </Link>
+          </div>
+          <p
+            className="main-text"
+            data-testid="home-initial-message"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+
+        </header>
+
+        <section className="main-products">
+
+          <div className="main-categories">
+            {arrOfCategories.length > 0
             && arrOfCategories.map((categorie) => (
               <button
                 className="categories"
@@ -104,16 +118,24 @@ export default class Home extends Component {
                 {categorie.name}
               </button>
             ))}
-        </div>
-        { listSelectCategorie.length > 0
-        && <CardProducts
-          cardProduct={ listSelectCategorie }
-          addCart={ addCart }
-        /> }
+          </div>
 
-        { arrayProducts.length > 0
-          ? <CardProducts cardProduct={ arrayProducts } addCart={ addCart } />
-          : 'Nenhum produto foi encontrado' }
+          <div className="main-list-products">
+
+            { listSelectCategorie.length > 0
+              && <CardProducts
+                cardProduct={ listSelectCategorie }
+                addCart={ addCart }
+              /> }
+
+            { arrayProducts.length > 0
+              ? <CardProducts cardProduct={ arrayProducts } addCart={ addCart } />
+              : 'Nenhum produto foi encontrado' }
+
+          </div>
+
+        </section>
+
       </div>
     );
   }
